@@ -94,10 +94,7 @@ encoding of your strings, it's recommended that you populate a Buffer object
 yourself (e.g. using `Buffer.write()`) and pack that buffer rather than the
 string. This will ensure that you can control what gets packed.
 
-When unpacking, things are trickier as there is no way to know the encoding
-used when a string was packed. There is an [an open
-ticket](http://github.com/msgpack/msgpack/issues/issue/13) for the MsgPack
-format to address this.
+When unpacking, `MSGPACK_OBJECT_RAW` is always converted to a Buffer.
 
 ### Command Line Utilities
 

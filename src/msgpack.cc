@@ -262,9 +262,17 @@ msgpack_to_v8(msgpack_object *mo) {
         return a;
     }
 
-    case MSGPACK_OBJECT_RAW:
-        return String::New(mo->via.raw.ptr, mo->via.raw.size);
+    case MSGPACK_OBJECT_RAW: {
 
+        Buffer *slowBuffer = Buffer::New(mo->via.raw.size);
+        memcpy(Buffer::Data(slowBuffer), mo->via.raw.ptr, mo->via.raw.size);
+        v8::Local<v8::Object> globalObj = v8::Context::GetCurrent()->Global();
+        v8::Local<v8::Function> bufferConstructor = v8::Local<v8::Function>::Cast(globalObj->Get(v8::String::New("Buffer")));
+        v8::Handle<v8::Value> constructorArgs[3] = { slowBuffer->handle_, v8::Integer::New(mo->via.raw.size), v8::Integer::New(0) };
+        v8::Local<v8::Object> actualBuffer = bufferConstructor->NewInstance(3, constructorArgs);
+
+        return actualBuffer;
+    }
     case MSGPACK_OBJECT_MAP: {
         Local<Object> o = Object::New();
 

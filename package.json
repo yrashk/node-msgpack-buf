@@ -1,6 +1,6 @@
 {
-	"name": "msgpack",
-	"description": "A space-efficient object serialization library for node.js",
+	"name": "msgpack-buf",
+	"description": "A Buffer-oriented version of the msgpack library",
 	"version": "0.1.8",
 	"homepage": "https://github.com/pgriess/node-msgpack",
 	"author": "Peter Griess <pg@std.in>",
@@ -12,11 +12,15 @@
 		{
 			"name": "Christopher Mooney",
 			"email": "chris@dod.net"
-		}
+		},
+                {
+                        "name": "Yurii Rashkovskii",
+                        "email": "yrashk@gmail.com"
+                }
 	],
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/pgriess/node-msgpack.git"
+		"url": "https://github.com/yrashk/node-msgpack-buf.git"
 	},
 	"main": "./lib/msgpack",
 	"directories": {
